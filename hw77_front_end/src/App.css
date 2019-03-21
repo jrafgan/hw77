@@ -1,8 +1,9 @@
 .li {
     display: grid;
-    grid-template-columns: 230px 200px auto;
+    grid-template-columns: 150px 250px auto;
     border-radius: 5px;
     background: #0fb9ff;
+    padding: 10px;
 }
 
 body {
@@ -49,4 +50,8 @@ span {
     color: red;
     padding: 50px 10px;
     background: white;
+}
+
+.post_number {
+    color: orangered;
 }

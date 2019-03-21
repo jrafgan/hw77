@@ -1,5 +1,5 @@
 const fs = require('fs');
-const filename = './db.json';
+const filename = './app/db.json';
 
 let messages = [];
 

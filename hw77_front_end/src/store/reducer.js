@@ -1,4 +1,4 @@
-import {CATCH_ERROR, CHANGE_VALUE, CLOSE_NOTIFICATION, FETCH_SUCCESS, POST_SUCCESS} from "./actions";
+import {ADD_FILE, CATCH_ERROR, CHANGE_VALUE, CLOSE_NOTIFICATION, FETCH_SUCCESS, POST_SUCCESS} from "./actions";
 
 const initialState = {
     apiMessages: [],
@@ -7,6 +7,7 @@ const initialState = {
     dateTime: '',
     id: '',
     error: '',
+    image: null,
 };
 
 const Reducer = (state = initialState, action) => {
@@ -15,6 +16,13 @@ const Reducer = (state = initialState, action) => {
         case CHANGE_VALUE:
             const {name, value} = action.e.currentTarget;
             return {...state, [name]: value};
+
+        case ADD_FILE:
+            console.log('this is reducer 21 ', action.e.target.name + ' ' + action.e.target.files[0]);
+            return {
+                ...state,
+                [action.e.target.name]: action.e.target.files[0]
+            };
 
         case FETCH_SUCCESS:
             let dateTime = action.res[action.res.length - 1].dateTime;

@@ -5,6 +5,8 @@ export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const POST_SUCCESS = 'POST_SUCCESS';
 export const CATCH_ERROR = 'CATCH_ERROR';
 export const CLOSE_NOTIFICATION = 'CLOSE_NOTIFICATION';
+export const ADD_FILE = 'ADD_FILE';
+export const SUBMIT_HANDLER = 'SUBMIT_HANDLER';
 
 export const changeValue = (e) => {
     return {type: CHANGE_VALUE, e}
@@ -20,6 +22,14 @@ export const postSuccess = (res) => {
 
 export const catchError = (err) => {
     return {type: CATCH_ERROR, err}
+};
+
+export const addFile = e => {
+  return {type: ADD_FILE, e}
+};
+
+export const submitHandler = e => {
+  return {type: SUBMIT_HANDLER, e}
 };
 
 export const getMessages = () => {
@@ -45,6 +55,7 @@ export const checkNewMessage = () => {
                     dispatch(postSuccess(response.data));
                 }
             }).catch(error => {
+                console.log(error);
                 dispatch(catchError('Wrong dateTime requested ' + error));
             });
         }
@@ -55,9 +66,14 @@ export const sendToServer = (e) => {
     e.preventDefault();
     return (dispatch, getState) => {
         const state = getState();
-        axios.post('/messages', {author: state.author, message: state.message}).then(response => {
+        console.log(state);
+        const formData = new FormData();
+        formData.append('author', state.author);
+        formData.append('message', state.message);
+        formData.append('image', state.image);
+        axios.post('/messages', formData).then(response => {
         }).catch(error => {
-            dispatch(catchError('Author & Message can not be empty \n ' + error));
+            dispatch(catchError('Message can not be empty ' + error));
         });
     };
 
