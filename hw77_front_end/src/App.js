@@ -20,7 +20,7 @@ class App extends Component {
     };
 
     showTarget = e =>{
-      console.log(e.currentTarget);
+      console.log(e.currentTarget.id);
 
     };
 
@@ -39,7 +39,7 @@ class App extends Component {
                 <ol id="chatBox">
                     {this.props.error !== '' ? <div className="notification" onClick={this.props.closeNotification}>{this.props.error}</div> : null}
                     {this.props.apiMessages.map((item, ndx)=>(
-                        <li key={item.id} className='li' id={ndx}><div className='thumbnail_div'><ImgThumbnail image={item.image}/></div>{<div className="time_and_author_div"> <p>{moment(item.dateTime).format('llll')}</p><p>{item.author}</p></div>}<div className="message_div" onClick={this.showTarget}><p className="post_number">Click on <button >post #{ndx}</button> to reply</p><p>{item.message}</p></div></li>
+                        <li key={item.id} className='li' id={ndx}><div className='thumbnail_div'><ImgThumbnail image={item.image}/></div>{<div className="time_and_author_div"> <p>{moment(item.dateTime).format('llll')}</p><p>{item.author}</p></div>}<div className="message_div" onClick={this.showTarget}><p className="post_number">Click on <button id={`post #${ndx} \n ${item.message}`} onClick={this.showTarget}>post #{ndx}</button> to reply</p><p>{item.message}</p></div></li>
                     ))}
                 </ol>
             </div>
