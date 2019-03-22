@@ -1,4 +1,12 @@
-import {ADD_FILE, CATCH_ERROR, CHANGE_VALUE, CLOSE_NOTIFICATION, FETCH_SUCCESS, POST_SUCCESS} from "./actions";
+import {
+    ADD_FILE,
+    CATCH_ERROR,
+    CHANGE_VALUE,
+    CLOSE_NOTIFICATION,
+    FETCH_SUCCESS,
+    POST_SUCCESS,
+    REPLY_TO
+} from "./actions";
 
 const initialState = {
     apiMessages: [],
@@ -8,6 +16,7 @@ const initialState = {
     id: '',
     error: '',
     image: null,
+    replyToMessage: '',
 };
 
 const Reducer = (state = initialState, action) => {
@@ -18,7 +27,6 @@ const Reducer = (state = initialState, action) => {
             return {...state, [name]: value};
 
         case ADD_FILE:
-            console.log('this is reducer 21 ', action.e.target.name + ' ' + action.e.target.files[0]);
             return {
                 ...state,
                 [action.e.target.name]: action.e.target.files[0]
@@ -38,6 +46,13 @@ const Reducer = (state = initialState, action) => {
 
         case CLOSE_NOTIFICATION:
             return {...state, error: ''};
+
+        case REPLY_TO:
+
+            return {
+                ...state,
+                replyToMessage: action.text
+        };
 
         default:
             return state;

@@ -41,7 +41,6 @@ router.get('/messages', (req, res) => {
 router.post('/messages', upload.single('image'), (req, res) => {
 
     if (req.body.message !== '') {
-        console.log('hey ehye hey ', req.file);
         let newMessage = {...req.body, "id": nanoid(), "dateTime": new Date().toISOString()};
         if (req.body.author === '') {
             newMessage.author = 'Anonymous';

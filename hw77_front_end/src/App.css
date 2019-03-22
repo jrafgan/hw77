@@ -6,6 +6,10 @@
     padding: 10px;
 }
 
+.reply_button:visited {
+    background: limegreen;
+}
+
 body {
     margin: 0;
     padding: 0 0 50px 0;
@@ -35,11 +39,12 @@ span {
 }
 
 #chatBox {
-
     z-index: 0;
     display: grid;
     grid-row-gap: 5px;
     padding: 10px 10px 35px;
+    height: 469px;
+    overflow: auto;
 }
 
 .notification {
@@ -54,4 +59,14 @@ span {
 
 .post_number {
     color: orangered;
+}
+
+.replied_message {
+    color: white;
+}
+
+.header {
+    text-align: center;
+    color: #0fb9ff;
+    padding-top: 10px;
 }
